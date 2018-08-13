@@ -1,0 +1,80 @@
+/*
+
+Слайдер: суть;
+
+Ширина слайдера складывается из ширины всех изображений
+Высота слайдера рассчитывается из высоты самого большого изображения. Перебираем изображения циклом и узнаем высоту, цикл как с зарплатами.
+
+
+При клике на стрелку , слайдер делает маневр translate на ширину изображения в какую-то сторону
+При клике на точку, ищем изображение с таким же индексом, узнаем его положение относительно левого края, делаем маневр слайдером на ту величину
+
+
+Структура слайдера
+	обертка главная
+	обертка блока который будет слайдится, то есть список ul.slider__wrapper
+	слайды
+
+*/
+
+
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.product-slider {
+	overflow: hidden;
+}
+
+.product-slider__slider {
+
+}
+
+.product-slider__wrapper {
+  padding: 10px 0;
+  -webkit-transition: .5s all;
+  -o-transition: .5s all;
+  transition: .5s all;
+
+  -webkit-transform: translateX(0);
+  -ms-transform: translateX(0);
+  -o-transform: translateX(0);
+  transform: translateX(0);
+}
+
+.product-slider__prev {
+  position: absolute;
+  top: 50%;
+  left: -50px;
+
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+
+  background-color: #fff;
+}
+
+.product-slider__next {
+  position: absolute;
+  top: 50%;
+  right: 100px;
+
+  margin-left: -100px;
+
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+
+  background-color: #fff;
+}
+
+.product {
+	float: left;
+	text-align: center;
+    position: relative;
+    padding: 35px 30px;
+    background-color: #f6f7fc;
+    -webkit-box-shadow: 2px 3px 6px 1px rgba(41, 4, 19, 0.22);
+    box-shadow: 2px 3px 6px 1px rgba(41, 4, 19, 0.22);
+}

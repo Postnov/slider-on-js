@@ -31,7 +31,7 @@
 
 }
 
-.product-slider__wrapper {
+.dp-slider__wrapper {
   padding: 10px 0;
   -webkit-transition: .5s all;
   -o-transition: .5s all;
@@ -41,6 +41,12 @@
   -ms-transform: translateX(0);
   -o-transform: translateX(0);
   transform: translateX(0);
+  overflow: hidden;
+}
+
+
+.dp-slider__wrapper > *{
+  float: left;
 }
 
 .product-slider__prev {

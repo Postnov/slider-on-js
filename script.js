@@ -1,22 +1,5 @@
 ;document.addEventListener('DOMContentLoaded', function() {
 
-/*
-
-	var slider = document.querySelector('.dp-slider'),
-		wrapper = document.querySelector('.dp-slider__wrapper'),
-		slides = slider.querySelectorAll('.dp-slide'),
-		slideWidth = 0,
-		windowWidth = document.body.clientWidth,
-		slidePerPage = 3,
-		dots = document.querySelector('.dots'),
-		prevBtn = document.querySelector('.prev'),
-		nextBtn = document.querySelector('.next'),
-		translateWidth = windowWidth / slidePerPage,
-		initialTranslate = 0;
-*/
-
-
-
 	function DPSlider (selector, options) {
 		this.selector = document.querySelector(selector) || document.querySelector('.dp-slider');
 		this.options  = options || {};
@@ -124,14 +107,6 @@
 
 
 	};// end constructor
-
-
-
-
-
-
-
-
 
 
 

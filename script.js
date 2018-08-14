@@ -4,26 +4,26 @@
 		this.selector = document.querySelector(selector) || document.querySelector('.dp-slider');
 		this.options  = options || {};
 
-		var slider           = this.selector,
-			sliderOldContent = this.selector.innerHTML,
-			sliderNewContent = '<div class="dp-slider__wrapper">' + sliderOldContent + '</div>';
+		var slider		= this.selector,
+		    sliderOldContent 	= this.selector.innerHTML,
+		    sliderNewContent 	= '<div class="dp-slider__wrapper">' + sliderOldContent + '</div>';
 
 		this.selector.innerHTML = sliderNewContent;
 
 
-		var wrapperSlider    = slider.querySelector('.dp-slider__wrapper'),
-			slides		     = wrapperSlider.children;
-			slideWidth       = 0,
-			windowWidth      = document.body.clientWidth,
+		var wrapperSlideк	= slider.querySelector('.dp-slider__wrapper'),
+			slides		= wrapperSlider.children,
+			slideWidth	= 0,
+			windowWidth	= document.body.clientWidth,
 
 			//opitons
-			slidePerPage     = options.sliderPerPage || 5,
-			dots 		     = options.dots || false,
-			nav		         = options.nav || false,
-			navSpeed         = options.navSpeed || false,
+			slidePerPage	= options.sliderPerPage || 5,
+			dots		= options.dots || false,
+			nav		= options.nav || false,
+			navSpeed	= options.navSpeed || false,
 
 			translateWidth   = windowWidth / slidePerPage,
-		    initialTranslate = 0;
+		    	initialTranslate = 0;
 		    
 
 
@@ -70,9 +70,9 @@
 		}
 
 		if (nav === true) {
-			var navEl = document.createElement('div'),
-				prevEl  = document.createElement('button'),
-				nextEl  = document.createElement('button');
+			var navEl 	= document.createElement('div'),
+			    prevEl  	= document.createElement('button'),
+			    nextEl 	= document.createElement('button');
 			
 			navEl.classList.add('dp-slider__nav');
 			prevEl.classList.add('dp-slider__prev');

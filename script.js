@@ -1,45 +1,48 @@
 ;document.addEventListener('DOMContentLoaded', function() {
 
 	function DPSlider (selector, options) {
-		this.selector = document.querySelector(selector) || document.querySelector('.dp-slider');
-		this.options  = options || {};
+		var that = this;
 
-		var slider		= this.selector,
-		    sliderOldContent 	= this.selector.innerHTML,
-		    sliderNewContent 	= '<div class="dp-slider__wrapper">' + sliderOldContent + '</div>';
+		that.selector        = document.querySelector(selector) || document.querySelector('.dp-slider');
+		that.options         = options || {};
 
-		this.selector.innerHTML = sliderNewContent;
+		var slider           = that.selector,
+		    sliderOldContent = that.selector.innerHTML,
+		    sliderNewContent = '<div class="dp-slider__wrapper">' + sliderOldContent + '</div>';
 
+			//wrap old content in my element
+			that.selector.innerHTML = sliderNewContent;
 
-		var wrapperSlideк	= slider.querySelector('.dp-slider__wrapper'),
-			slides		= wrapperSlider.children,
-			slideWidth	= 0,
-			windowWidth	= document.body.clientWidth,
+		    var wrapperSlider = slider.querySelector('.dp-slider__wrapper'),
+			slides            = wrapperSlider.children,
+			slideWidth        = 0,
+			windowWidth       = document.body.clientWidth,
 
 			//opitons
-			slidePerPage	= options.sliderPerPage || 5,
-			dots		= options.dots || false,
-			nav		= options.nav || false,
-			navSpeed	= options.navSpeed || false,
+			slidePerPage      = that.options.sliderPerPage || 5,
+			dots              = that.options.dots || false,
+			nav               = that.options.nav || false,
+			navSpeed          = that.options.navSpeed || false,
 
-			translateWidth   = windowWidth / slidePerPage,
-		    	initialTranslate = 0;
-		    
+			translateWidth    = windowWidth / that.options.slidePerPage,
+		    initialTranslate  = 0;
 
 
-		for (var i = 0; i < slides.length; i++) {
+		//Each slides for set width slide and calc common width
+		Object.keys(slides).forEach(function(i) {
 
 			//get item width
-			slides[i].style.width = (windowWidth / slidePerPage) + 'px';
+			slides[i].style.width = (windowWidth / that.options.slidePerPage) + 'px';
 
-			//sliderWidth
+			//calc width all slide
 			slideWidth += parseFloat(slides[i].style.width);
-		}
+		});
 
+		//set common width
 		wrapperSlider.style.width = slideWidth + 'px';
 
 
-
+		//if parametr dots is true
 		if (dots === true) {
 			var dotsEl = document.createElement('div');
 			dotsEl.classList.add('dp-slider__dots');
@@ -53,8 +56,10 @@
 
 			slider.appendChild(dotsEl);
 
+
 			/* Dots Translate */
 			slider.querySelectorAll('.dp-slider__dots button').forEach(function(item) {
+
 				item.addEventListener('click', function() {
 					var translateDot = this.innerText * translateWidth;
 					translateDot -= translateWidth;
@@ -69,6 +74,7 @@
 			});			
 		}
 
+		//if parametr nav is true
 		if (nav === true) {
 			var navEl 	= document.createElement('div'),
 			    prevEl  	= document.createElement('button'),
@@ -85,14 +91,18 @@
 			navEl.appendChild(nextEl);
 			slider.appendChild(navEl);
 
-
+			//event next slide
 			nextEl.addEventListener('click', function () {
-				if (parseFloat(wrapperSlider.style.width) - translateWidth >= initialTranslate.toFixed()) {
+				//the coordinates of the penultimate element
+				var penultimateCoord = parseFloat(wrapperSlider.style.width) - translateWidth;
+
+				if (+penultimateCoord.toFixed() > +initialTranslate.toFixed()) {
 					initialTranslate += translateWidth;
 					wrapperSlider.style.transform = "translateX(-"+ initialTranslate + "px)";
 				}
 			});			
 
+			//event prev slide
 			prevEl.addEventListener('click', function () {
 				if (initialTranslate.toFixed() === translateWidth.toFixed()) {
 					wrapperSlider.style.transform = "translateX(0px)";
@@ -113,7 +123,7 @@
 	var slider = new DPSlider('.dp-slider', {
 		nav: true,
 		dots: true,
-		slidePerPage: 10
+		slidePerPage: 4
 	})
 
 	var slider2 = new DPSlider('.test-slider', {

@@ -22,11 +22,10 @@
 			slidePerView      = that.options.slidePerView || 1,
 			dots              = that.options.dots || false,
 			nav               = that.options.nav || false,
-			navSpeed          = that.options.navSpeed || false,
+			navSpeed          = that.options.navSpeed || 500,
 
 			translateWidth    = windowWidth / slidePerView,
 		    initialTranslate  = 0;
-
 
 
 		//Each slides for set width slide and calc common width
@@ -39,8 +38,13 @@
 			slideWidth += parseFloat(slides[i].style.width);
 		});
 
+
 		//set common width
 		wrapperSlider.style.width = slideWidth + 'px';
+
+
+		//set transition duration
+		wrapperSlider.style.transitionDuration = navSpeed + 'ms';
 
 
 		//if parametr dots is true
@@ -78,6 +82,7 @@
 			});			
 
 		}//end condition dots
+
 
 		//if parametr nav is true
 		if (nav === true) {
@@ -137,11 +142,11 @@
 
 	//Involve constructor
 
-
 	var slider = new DPSlider('.dp-slider', {
 		nav: true,
 		dots: true,
-		slidePerView: 2
+		slidePerView: 2,
+		navSpeed: 1000
 	})
 
 	var slider2 = new DPSlider('.test-slider', {

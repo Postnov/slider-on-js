@@ -1,17 +1,16 @@
 ;document.addEventListener('DOMContentLoaded', function() {
 
 	function DPSlider (selector, options) {
-		var that = this;
+		
+		this.selector        = document.querySelector(selector) || document.querySelector('.dp-slider');
+		this.options         = options || {};
 
-		that.selector        = document.querySelector(selector) || document.querySelector('.dp-slider');
-		that.options         = options || {};
-
-		var slider           = that.selector,
-		    sliderOldContent = that.selector.innerHTML,
+		var slider           = this.selector,
+		    sliderOldContent = this.selector.innerHTML,
 		    sliderNewContent = '<div class="dp-slider__wrapper">' + sliderOldContent + '</div>';
 
 			//wrap old content in my element
-			that.selector.innerHTML = sliderNewContent;
+			this.selector.innerHTML = sliderNewContent;
 
 		    var wrapperSlider = slider.querySelector('.dp-slider__wrapper'),
 			slides            = wrapperSlider.children,
@@ -19,10 +18,10 @@
 			windowWidth       = document.body.clientWidth,
 
 			//opitons
-			slidePerView      = that.options.slidePerView || 1,
-			dots              = that.options.dots || false,
-			nav               = that.options.nav || false,
-			navSpeed          = that.options.navSpeed || 500,
+			slidePerView      = this.options.slidePerView || 1,
+			dots              = this.options.dots || false,
+			nav               = this.options.nav || false,
+			navSpeed          = this.options.navSpeed || 500,
 
 			translateWidth    = windowWidth / slidePerView,
 		    initialTranslate  = 0;

@@ -15,7 +15,7 @@
 		    var wrapperSlider = slider.querySelector('.dp-slider__wrapper'),
 			slides            = wrapperSlider.children,
 			slideWidth        = 0,
-			windowWidth       = document.body.clientWidth,
+			windowWidth       = slider.clientWidth,
 
 			//opitons
 			slidePerView      = this.options.slidePerView || 1,

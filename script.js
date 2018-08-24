@@ -1,21 +1,28 @@
 ;document.addEventListener('DOMContentLoaded', function() {
 
 	function DPSlider (selector, options) {
-		
+
 		this.selector        = document.querySelector(selector) || document.querySelector('.dp-slider');
 		this.options         = options || {};
 
-		var slider           = this.selector,
-		    sliderOldContent = this.selector.innerHTML,
-		    sliderNewContent = '<div class="dp-slider__wrapper">' + sliderOldContent + '</div>';
+
+
+
+		var slider           = this.selector;
+
+		if (!slider.querySelector('.dp-slider__wrapper')) {
+		    var sliderOldContent = this.selector.innerHTML,
+		    	sliderNewContent = '<div class="dp-slider__wrapper">' + sliderOldContent + '</div>';
 
 			//wrap old content in my element
-			this.selector.innerHTML = sliderNewContent;
+			slider.innerHTML = sliderNewContent;
+		}
 
-		    var wrapperSlider = slider.querySelector('.dp-slider__wrapper'),
+
+	    var wrapperSlider 	  = slider.querySelector('.dp-slider__wrapper'),
 			slides            = wrapperSlider.children,
-			slideWidth        = 0,
-			windowWidth       = slider.clientWidth,
+			sliderWidth       = 0,
+			sliderElemWidth   = slider.clientWidth,
 
 			//opitons
 			slidePerView      = this.options.slidePerView || 1,
@@ -23,7 +30,7 @@
 			nav               = this.options.nav || false,
 			navSpeed          = this.options.navSpeed || 500,
 
-			translateWidth    = windowWidth / slidePerView,
+			translateWidth    = sliderElemWidth / slidePerView,
 		    initialTranslate  = 0;
 
 
@@ -31,15 +38,15 @@
 		Object.keys(slides).forEach(function(i) {
 
 			//get item width
-			slides[i].style.width = (windowWidth / slidePerView) + 'px';
+			slides[i].style.width = translateWidth + 'px';
 
 			//calc width all slide
-			slideWidth += parseFloat(slides[i].style.width);
+			sliderWidth += parseFloat(slides[i].style.width);
 		});
 
 
 		//set common width
-		wrapperSlider.style.width = slideWidth + 'px';
+		wrapperSlider.style.width = sliderWidth + 'px';
 
 
 		//set transition duration
@@ -78,7 +85,7 @@
 
 					initialTranslate = translateDot;
 				});
-			});			
+			});
 
 		}//end condition dots
 
@@ -89,7 +96,7 @@
 			var navEl 	= document.createElement('div'),
 			    prevEl  	= document.createElement('button'),
 			    nextEl 	= document.createElement('button');
-			
+
 			navEl.classList.add('dp-slider__nav');
 			prevEl.classList.add('dp-slider__prev');
 			nextEl.classList.add('dp-slider__next');
@@ -112,7 +119,7 @@
 					wrapperSlider.style.transform = "translateX(-"+ initialTranslate + "px)";
 				}
 
-			});			
+			});
 
 			//event prev slide
 			prevEl.addEventListener('click', function () {
@@ -125,7 +132,7 @@
 					wrapperSlider.style.transform = "translateX(-"+ initialTranslate + "px)";
 				}
 
-			});	
+			});
 
 		}//end condition nav
 
